@@ -90,12 +90,13 @@ async def start_command(client: Client, message: Message):
             [
                 [
                     InlineKeyboardButton("Post Channel", callback_data = "about"),
-                    InlineKeyboardButton("Backup Channel", url='https://telegram.me/')
+                    InlineKeyboardButton("Close", callback_data = "close")
                 ]
             ]
         )
 
-        await message.reply_photo( caption = START_MSG.format(
+        await message.reply_text(
+            text = START_MSG.format(
                 first = message.from_user.first_name,
                 last = message.from_user.last_name,
                 username = None if not message.from_user.username else '@' + message.from_user.username,
@@ -103,10 +104,9 @@ async def start_command(client: Client, message: Message):
                 id = message.from_user.id
             ),
             reply_markup = reply_markup,
-            photo="https://i.ibb.co/pLLtXQK/Add-a-little-bit-of-body-text.jpg"
+            disable_web_page_preview = True,
+            quote = True
         )
-
-        
         return
 
     
